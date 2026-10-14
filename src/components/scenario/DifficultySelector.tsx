@@ -70,7 +70,7 @@ export function DifficultySelector({
             onKeyDown={(e) => handleKeyDown(e, i)}
             className={`relative text-left rounded-ui border p-5 transition-colors duration-200 ${
               active
-                ? 'bg-brand border-brand shadow-[0_10px_28px_-12px_rgba(55, 48, 163,0.5)]'
+                ? 'bg-brand border-brand shadow-[0_10px_28px_-12px_rgba(55,48,163,0.5)]'
                 : 'bg-surface border-control-border hover:border-brand'
             }`}
           >

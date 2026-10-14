@@ -707,7 +707,7 @@ function IdleHero({
         onClick={onStart}
         disabled={isConnecting}
         aria-label={isConnecting ? 'Connecting' : `Start speaking ${languageName}`}
-        className="relative w-32 h-32 rounded-full bg-brand text-accent flex items-center justify-center shadow-[0_0_0_8px_rgba(252, 199, 74,0.35),0_20px_44px_-14px_rgba(55, 48, 163,0.55)] transition-all hover:bg-brand-deep hover:scale-[1.04] active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait"
+        className="relative w-32 h-32 rounded-full bg-brand text-accent flex items-center justify-center shadow-[0_0_0_8px_rgba(252,199,74,0.35),0_20px_44px_-14px_rgba(55,48,163,0.55)] transition-all hover:bg-brand-deep hover:scale-[1.04] active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait"
       >
         {!isConnecting && (
           <span aria-hidden className="absolute inset-0 rounded-full pulse-ring" />
