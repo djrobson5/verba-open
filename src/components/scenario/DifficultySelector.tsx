@@ -99,14 +99,14 @@ export function DifficultySelector({
             </div>
             <p
               className={`font-mono text-[12px] uppercase tracking-[0.14em] mb-2 ${
-                active ? 'text-[#e3efe7]' : 'text-mute'
+                active ? 'text-[#e4e3f7]' : 'text-mute'
               }`}
             >
               {d.tag}
             </p>
             <p
               className={`text-[15px] leading-relaxed ${
-                active ? 'text-[#e3efe7]' : 'text-ink-soft'
+                active ? 'text-[#e4e3f7]' : 'text-ink-soft'
               }`}
             >
               {d.description}

@@ -38,13 +38,13 @@ export function AuthSplit({
           >
             {headline}
           </h1>
-          <p className="mt-5 text-lg leading-relaxed text-[#e3efe7] max-w-md">
+          <p className="mt-5 text-lg leading-relaxed text-[#e4e3f7] max-w-md">
             Have a live conversation in the language you&apos;re learning. Your partner listens,
             answers, and keeps it going.
           </p>
         </div>
 
-        <p className="hidden sm:block mt-10 lg:mt-0 font-mono text-[12px] uppercase tracking-[0.18em] text-[#bfdccb]">
+        <p className="hidden sm:block mt-10 lg:mt-0 font-mono text-[12px] uppercase tracking-[0.18em] text-[#c3c0ea]">
           <span aria-hidden>{languages.map((l) => l.flag).join(' · ')}</span>
           <span className="sr-only">
             Languages: {languages.map((l) => l.name).join(', ')}
