@@ -1,0 +1,46 @@
+{
+  "name": "verba",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "rm -f public/sw.js public/sw.js.map && next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@emoji-mart/data": "^1.2.1",
+    "@emoji-mart/react": "^1.1.1",
+    "@google/genai": "^1.42.0",
+    "@opentelemetry/api": "^1.9.1",
+    "@serwist/next": "^9.5.6",
+    "emoji-mart": "^5.6.0",
+    "firebase": "^12.9.0",
+    "firebase-admin": "^13.8.0",
+    "livekit-client": "^2.22.3",
+    "next": "^15.3.0",
+    "next-firebase-auth-edge": "^1.11.5",
+    "openai": "^7.15.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "serwist": "^9.5.6",
+    "simli-client": "^3.0.2"
+  },
+  "overrides": {
+    "@emoji-mart/react": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/serviceworker": "^0.0.192",
+    "eslint": "^9",
+    "eslint-config-next": "^15.3.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

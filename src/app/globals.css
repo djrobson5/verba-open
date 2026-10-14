@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* Design tokens.
+
+   Brand colors: --brand is the primary (buttons, active states, links) and
+   --accent is its highlight. --brand-deep is the hover shade for brand text
+   and for filled brand buttons: hover goes darker so light text on it keeps
+   its contrast.
+
+   Every text token (ink, ink-soft, mute, brand, good, warn, bad) clears
+   WCAG 1.4.3 (4.5:1) on white and on the surface tints, and control-border
+   clears 1.4.11 (3:1) on white for form controls.
+
+   Accent is a surface, highlight, or text-on-brand color only. Accent text on
+   brand passes (~6.3:1); accent text on any light background never does,
+   so never use text-accent outside a brand surface.
+
+   `page` (`bg-page`) is the page background; `surface` is cards and panels and
+   `surface-2` is secondary tints. Form controls stay white on top of them. */
+@theme {
+  --color-brand: #3730a3;
+  --color-brand-deep: #2e2885;
+  --color-accent: #fcc74a;
+  --color-accent-soft: #feebb8;
+
+  --color-page: #f5f1e8;      /* the page background */
+  --color-surface: #fbf8ef;   /* cards, panels, raised surfaces */
+  --color-surface-2: #ede7d6; /* secondary tints, code tiles, hover fills */
+
+  --color-ink: #1a1a17;       /* primary text */
+  --color-ink-soft: #4a4a44;  /* secondary text */
+  --color-mute: #69645b;      /* tertiary text, mono eyebrows and labels */
+  --color-rule: #d8d2c0;      /* borders */
+  --color-rule-soft: #e8e2d2; /* subtle dividers */
+  --color-control-border: #918b80; /* form control borders (3:1 on white) */
+
+  --color-good: #2d7a4f;
+  --color-warn: #85600f;
+  --color-bad: #a83a2c;
+
+  --font-sans: var(--font-source-sans), "Source Sans 3", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-ui: 3px; /* `rounded-ui`: the default radius for cards, buttons, inputs */
+
+  /* Shadows are tinted with the brand color, never black. */
+  --shadow-lift: 0 4px 18px rgba(55, 48, 163, 0.07);
+  --shadow-float: 0 16px 48px -16px rgba(55, 48, 163, 0.3);
+
+}
+
+@layer base {
+  html {
+    color: var(--color-ink);
+    background: var(--color-page);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--color-page);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+::selection {
+  background: var(--color-brand);
+  color: #ffffff;
+}
+
+/* Custom utilities live in Tailwind's utilities layer (via @utility) so their
+   :hover rules outrank plain utilities like `border-rule` on the same element. */
+
+/* Hover-lift for clickable cards: a 1px rise, a brand-tinted shadow, and a
+   brand border. */
+@utility hover-lift {
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--color-brand);
+  }
+}
+
+@utility scrollbar-thin {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-rule);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@utility word-in {
+  animation: word-in 0.35s ease forwards;
+  opacity: 0;
+}
+
+/* WCAG 2.2.2: motion with no pause control must stop within 5s (3 × 1.6s). */
+@utility pulse-ring {
+  animation: pulse-ring 1.6s ease-out 3;
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes word-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(252, 199, 74, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(252, 199, 74, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(252, 199, 74, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift:hover {
+    transform: none;
+  }
+  .word-in {
+    animation: word-fade 0.2s ease forwards;
+  }
+  .pulse-ring {
+    animation: none;
+  }
+}
+
+/* Landing page (src/components/landing, stashed until launch but still
+   compiled): floating chips. */
+@keyframes float-up {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-6px) rotate(var(--r, 0deg)); }
+}
+
+.chip-a { animation: float-up 4.5s ease-in-out infinite; }
+.chip-b { animation: float-up 5.5s ease-in-out 0.8s infinite; }
+
+/* Session page: the slow ping behind the mic button. */
+@keyframes ping-slow {
+  0% { transform: scale(1); opacity: 0.35; }
+  80%, 100% { transform: scale(2); opacity: 0; }
+}
+
+.animate-ping-slow { animation: ping-slow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite; }

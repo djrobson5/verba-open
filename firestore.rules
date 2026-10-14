@@ -1,0 +1,44 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Verba is invite-only: a signed-in Firebase Auth user is not enough, the
+    // ID token must carry the admin or allowed custom claim. Mirrors
+    // isAccessAllowed() in src/config/access.ts, which the middleware enforces.
+    function isMember() {
+      return request.auth != null
+        && (request.auth.token.admin == true || request.auth.token.allowed == true);
+    }
+
+    // Members can only read/write their own conversation subcollection
+    match /users/{userId}/conversations/{conversationId} {
+      allow read, write: if isMember() && request.auth.uid == userId;
+    }
+
+    // Members can read their own usage docs (so the UI can show remaining sessions),
+    // but writes are server-only via the Admin SDK (which bypasses these rules).
+    match /users/{userId}/usage/{dateKey} {
+      allow read: if isMember() && request.auth.uid == userId;
+      allow write: if false;
+    }
+
+    // Weekly practice budget (reservations + used seconds). Owner-readable so
+    // the dashboard can show minutes left; written only by the server through
+    // the Admin SDK, which bypasses these rules.
+    match /users/{userId}/weeks/{weekKey} {
+      allow read: if isMember() && request.auth.uid == userId;
+      allow write: if false;
+    }
+
+    // Scenarios are readable by any member; only admins (custom claim) write.
+    match /scenarios/{scenarioId} {
+      allow read: if isMember();
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
