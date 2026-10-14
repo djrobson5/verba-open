@@ -7,6 +7,10 @@ conversation afterward. It was built for a university language program, so acces
 invite-only: accounts are created from the command line, and daily and weekly limits keep voice
 API costs bounded.
 
+<p align="center">
+  <img src="docs/media/session.gif" width="720" alt="Animated demo of a Spanish 'Ordering a Coffee' session: the learner orders a café con leche, the partner asks what size, the learner orders a large one and a chocolate croissant and asks the price, and the partner answers, each turn appearing in the live transcript">
+</p>
+
 ## Features
 
 - **12 languages**: English, Spanish, French, German, Italian, Portuguese, Chinese, Japanese,
@@ -27,6 +31,63 @@ API costs bounded.
 - **Admin pages**: a scenario editor and a usage dashboard with estimated API spend per day and
   per provider.
 - **Installable PWA** with an offline fallback page.
+
+## Screenshots
+
+The captures come from a real Gemini Live session. The learner's lines are synthesized
+Spanish speech fed in as the microphone.
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/media/languages.png" alt="Language picker with twelve languages in a grid, each with its native name, and a meter showing 27 of 30 practice minutes left this week"><br>
+      <sub><b>Languages</b>, with this week's practice time</sub>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/media/scenarios.png" alt="Spanish page with Easy, Medium and Hard difficulty cards above scenario cards: Ordering a Coffee, Inviting a Friend Out, Asking for Directions, Dining at a Restaurant"><br>
+      <sub><b>Difficulty and scenario</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/media/start.png" alt="Session start screen reading 'Speak Español' with a large microphone button and settings for voice model, saving the transcript and the video partner"><br>
+      <sub><b>Start a session</b>: pick a voice model, optionally a video partner</sub>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/media/session.png" alt="Live session transcript: the learner orders a café con leche, the partner asks what size, the learner asks for a large one and a chocolate croissant, the partner gives the total; a control bar with the mic, an audio level meter, the timer and an End button"><br>
+      <sub><b>Live conversation</b> with a running transcript</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/media/history.png" alt="Saved transcript of the Ordering a Coffee session with its date, language, pace, length and number of turns"><br>
+      <sub><b>History</b>: review any saved conversation</sub>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/media/login.png" alt="Sign-in page with an indigo panel reading 'Pick up where you left off' beside the email and password form"><br>
+      <sub><b>Sign in</b> (accounts are invite-only)</sub>
+    </td>
+  </tr>
+</table>
+
+### On a phone
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="docs/media/phone-start.png" width="240" alt="Session start screen at phone width"><br>
+      <sub>Start a session</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="docs/media/phone-session.png" width="240" alt="Live Spanish conversation at phone width, with the control bar at the bottom"><br>
+      <sub>Live conversation</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="docs/media/phone-history.png" width="240" alt="Saved transcript at phone width"><br>
+      <sub>Saved transcript</sub>
+    </td>
+  </tr>
+</table>
 
 ## Requirements
 
